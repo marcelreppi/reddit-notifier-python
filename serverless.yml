@@ -1,0 +1,20 @@
+service: reddit-notifier-python
+provider:
+  name: aws
+  runtime: python3.6
+  region: eu-west-1
+
+functions:
+  reddit-notifier-python:
+    handler: index.handler
+    name: reddit-notifier-python
+    events:
+      - schedule: cron(0 * * * ? *)
+    environment:
+      MAIL_HOST: your_mail_provider_host
+      MAIL_PORT: your_mail_provider_port
+      MAIL_USER: your_sending_mail_address
+      MAIL_PW: your_sending_mail_password
+      MAIL_RECEIVER: receiving_mail_address
+plugins:
+  - serverless-python-requirements
