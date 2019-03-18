@@ -14,4 +14,5 @@ A service that sends email notifications for reddit posts based on keywords for 
 ## Serverless deployment
 
 * Configure ```serverless.yml```
+* Run ```npm i```
 * Deploy lambda function via serverless ```sls deploy -v```
