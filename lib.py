@@ -9,12 +9,13 @@ load_dotenv()
 latestPostIds = {}
 
 def fetchRSSFeed(subreddit):
-  query = "?limit=5"
+  query = "?limit=100"
   if subreddit in latestPostIds:
     query += f'&before + {latestPostIds[subreddit]}'
   feed = feedparser.parse(f'https://www.reddit.com/r/{subreddit}/new.rss{query}')
 
-  latestPostIds[subreddit] = feed.entries[0].id.split('/')[-1]
+  if (len(feed.entries) > 0):
+    latestPostIds[subreddit] = feed.entries[0].id.split('/')[-1]
   return feed
 
 def sendNotification(post, sr):
